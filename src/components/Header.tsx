@@ -25,7 +25,7 @@ const Header = ({ onSearchOpen }: Props) => {
           </button>
 
           <a href="/" className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
-            Kala Atelier
+            Prototype
           </a>
 
           <div className="flex items-center gap-4">
