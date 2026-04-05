@@ -12,8 +12,16 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      display: ['Cormorant Garamond', 'serif'],
+      body: ['DM Sans', 'sans-serif'],
+    },
     extend: {
       colors: {
+        banner: {
+          DEFAULT: "hsl(var(--banner-bg))",
+          foreground: "hsl(var(--banner-fg))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
