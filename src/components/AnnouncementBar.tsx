@@ -1,7 +1,7 @@
 import { Truck, Gift, Shield } from "lucide-react";
 
 const announcements = [
-  { icon: Truck, text: "Free Shipping on Orders Over $75" },
+  { icon: Truck, text: "Free Shipping on Orders Over ₹5,000" },
   { icon: Gift, text: "Gift Wrapping Available" },
   { icon: Shield, text: "Handcrafted with a Lifetime Guarantee" },
 ];
