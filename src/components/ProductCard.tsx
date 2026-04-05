@@ -1,6 +1,7 @@
 import { Heart, ShoppingBag } from "lucide-react";
-import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 export interface Product {
   id: number;
@@ -18,7 +19,9 @@ const formatINR = (n: number) =>
   "₹" + n.toLocaleString("en-IN");
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const [liked, setLiked] = useState(false);
+  const { addToCart } = useCart();
+  const { isWishlisted, toggleWishlist } = useWishlist();
+  const liked = isWishlisted(product.id);
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -26,12 +29,14 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!product.inStock) return;
+    addToCart(product);
     toast({ title: "Added to bag", description: `${product.name} has been added to your bag.` });
   };
 
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setLiked(!liked);
+    toggleWishlist(product.id);
     toast({ title: liked ? "Removed from wishlist" : "Added to wishlist", description: product.name });
   };
 
