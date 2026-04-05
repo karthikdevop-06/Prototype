@@ -9,7 +9,7 @@ interface Props {
 const ProductGrid = ({ products, sortBy, onSortChange }: Props) => (
   <div>
     <div className="flex items-center justify-between mb-6">
-      <p className="text-sm text-muted-foreground font-body">{products.length} product{products.length !== 1 ? "s" : ""}</p>
+      <p className="text-sm text-muted-foreground font-body">{(products ?? []).length} product{(products ?? []).length !== 1 ? "s" : ""}</p>
       <select
         value={sortBy}
         onChange={(e) => onSortChange(e.target.value)}
