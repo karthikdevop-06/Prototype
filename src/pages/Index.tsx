@@ -5,6 +5,7 @@ import CollectionHero from "@/components/CollectionHero";
 import FilterSidebar from "@/components/FilterSidebar";
 import ProductGrid from "@/components/ProductGrid";
 import Footer from "@/components/Footer";
+import SearchOverlay from "@/components/SearchOverlay";
 import { type Product } from "@/components/ProductCard";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
@@ -50,6 +51,7 @@ const Index = () => {
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [sortBy, setSortBy] = useState("Best Selling");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const filtered = useMemo(() => {
     let result = allProducts.filter((p) => {
@@ -82,7 +84,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <AnnouncementBar />
-      <Header />
+      <Header onSearchOpen={() => setSearchOpen(true)} />
       <CollectionHero />
       <main className="container py-6 md:py-8 flex-1">
         {/* Mobile filter toggle */}
@@ -153,6 +155,7 @@ const Index = () => {
         </div>
       </main>
       <Footer />
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} products={allProducts} />
     </div>
   );
 };
